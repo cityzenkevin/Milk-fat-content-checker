@@ -11,106 +11,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id               Int       @id @default(autoincrement())
-  email            String    @unique
-  firstname        String?
-  lastname         String?
-  password         String
-  role             Role      @default(STUDENT)
-  isInviteAccepted Boolean   @default(false)
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
-  Token            Token[]
-  student          Student?
-  lecturer         Lecturer?
-}
-
-model Token {
-  id          Int       @id @default(autoincrement())
-  token       String    @unique
-  type        TokenType
-  expires     DateTime
-  blacklisted Boolean
-  createdAt   DateTime  @default(now())
-  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      Int
-}
-
-model Student {
-  id         Int          @id @default(autoincrement())
-  user       User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId     Int          @unique
-  studentId  String       @unique
-  submission Submission[]
-  assignment Assignment[] @relation("AssignmentStudents")
-}
-
-model Lecturer {
-  id          Int          @id @default(autoincrement())
-  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId      Int          @unique
-  staffId     String       @unique
-  assignments Assignment[]
-}
-
-model Assignment {
-  id             Int          @id @default(autoincrement())
-  title          String
-  description    String       @db.Text
-  deadline       DateTime
-  isDraft        Boolean      @default(true)
-  assignmentCode String?      @unique
-  lecturer       Lecturer     @relation(fields: [lecturerId], references: [id], onDelete: Cascade)
-  students       Student[]    @relation("AssignmentStudents")
-  submissions    Submission[]
-  lecturerId     Int
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-}
-
-model Submission {
-  id             String     @id @default(uuid())
-  assignment     Assignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
-  assignmentId   Int
-  student        Student    @relation(fields: [studentId], references: [id], onDelete: Cascade)
-  studentId      Int
-  submissionCode String     @unique
-  head           String 
-  snapshots      Snapshot[]
-  createdAt      DateTime   @default(now())
-  updatedAt      DateTime   @updatedAt
-
-  @@unique([studentId, assignmentId])
-}
-
-model Snapshot {
-  id             String     @id @default(uuid())
-  submission   Submission @relation(fields: [submissionId], references: [id], onDelete: Cascade)
-  submissionId String
-  snapshotName String
-  snapshotPath String     @unique
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-}
-
-
 model FatContent {
   id         Int      @id @default(autoincrement())
   density   Float?
   inflared  Float?
   color     String?
   createdAt  DateTime @default(now())
-}
-
-enum Role {
-  ADMIN
-  STUDENT
-  LECTURER
-}
-
-enum TokenType {
-  ACCESS
-  REFRESH
-  ACTIVATION
 }

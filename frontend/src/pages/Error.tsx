@@ -1,9 +1,5 @@
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import NotFoundImg from "../assets/NotFoundImg.png";
-import DashHeader from "../components/DashboardHeader";
-import Sidebar from "../layouts/Sidebar";
-import { useState } from "react";
-import Header from "./homepage/Header";
 import { useTranslation } from "react-i18next";
 
 function Error() {
@@ -11,9 +7,6 @@ function Error() {
   const navigate = useNavigate();
   const location = useLocation()?.pathname;
   const isDashboard = location?.split("/")[1] === "dashboard";
-  const [nav, setNav] = useState(false);
-  const handleClick = () => setNav(!nav);
-
   const navigateHome = () => {
     navigate(isDashboard ? "/dashboard" : "/");
   };
@@ -25,8 +18,6 @@ function Error() {
 
   return (
     <>
-      {isDashboard ? <DashHeader /> : <Header />}
-      {isDashboard && <Sidebar toggle={handleClick} style="hidden lg:flex" />}
 
       <div className="errorImg flex flex-col items-center justify-center  h-screen w-screen text-center">
         <div>

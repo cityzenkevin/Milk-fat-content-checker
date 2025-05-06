@@ -98,18 +98,6 @@ Prisma.NullTypes = {
  * Enums
  */
 
-exports.Prisma.AssignmentScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  description: 'description',
-  deadline: 'deadline',
-  isDraft: 'isDraft',
-  assignmentCode: 'assignmentCode',
-  lecturerId: 'lecturerId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.FatContentScalarFieldEnum = {
   id: 'id',
   density: 'density',
@@ -118,55 +106,14 @@ exports.Prisma.FatContentScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
-exports.Prisma.LecturerScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  staffId: 'staffId'
-};
-
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
 
-exports.Prisma.SnapshotScalarFieldEnum = {
-  id: 'id',
-  submissionId: 'submissionId',
-  snapshotName: 'snapshotName',
-  snapshotPath: 'snapshotPath',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
-};
-
-exports.Prisma.StudentScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  studentId: 'studentId'
-};
-
-exports.Prisma.SubmissionScalarFieldEnum = {
-  id: 'id',
-  assignmentId: 'assignmentId',
-  studentId: 'studentId',
-  submissionCode: 'submissionCode',
-  head: 'head',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-
-exports.Prisma.TokenScalarFieldEnum = {
-  id: 'id',
-  token: 'token',
-  type: 'type',
-  expires: 'expires',
-  blacklisted: 'blacklisted',
-  createdAt: 'createdAt',
-  userId: 'userId'
 };
 
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
@@ -176,37 +123,8 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
-exports.Prisma.UserScalarFieldEnum = {
-  id: 'id',
-  email: 'email',
-  firstname: 'firstname',
-  lastname: 'lastname',
-  password: 'password',
-  role: 'role',
-  isInviteAccepted: 'isInviteAccepted',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-};
-exports.Role = {
-  ADMIN: 'ADMIN',
-  STUDENT: 'STUDENT',
-  LECTURER: 'LECTURER'
-};
-
-exports.TokenType = {
-  ACCESS: 'ACCESS',
-  REFRESH: 'REFRESH',
-  ACTIVATION: 'ACTIVATION'
-};
 
 exports.Prisma.ModelName = {
-  User: 'User',
-  Token: 'Token',
-  Student: 'Student',
-  Lecturer: 'Lecturer',
-  Assignment: 'Assignment',
-  Submission: 'Submission',
-  Snapshot: 'Snapshot',
   FatContent: 'FatContent'
 };
 
